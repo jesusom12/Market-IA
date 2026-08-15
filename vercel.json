@@ -1,0 +1,3 @@
+{"buildCommand": "cd Interfaz && npm install && npm run build",
+  "outputDirectory": "Interfaz/dist",
+  "framework": "vite"}
