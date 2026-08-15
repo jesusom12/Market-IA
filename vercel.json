@@ -1,3 +1,5 @@
-{"buildCommand": "cd Interfaz && npm install && npm run build",
-  "outputDirectory": "Interfaz/dist",
-  "framework": "vite"}
+{
+  "buildCommand": "cd interfaz && npm install && npm run build",
+  "outputDirectory": "interfaz/dist",
+  "framework": "vite"
+}
