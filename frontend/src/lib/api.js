@@ -1,5 +1,7 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 async function request(path, options = {}) {
-  const response = await fetch(path, {
+  const response = await fetch(`${API_URL}${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -32,26 +34,5 @@ export async function saveProduct(product) {
 
 export async function getProducts() {
   const payload = await request("/api/products");
-  return payload.products || [];
-}
-
-export async function publishToFacebook(product) {
-  return request("/api/facebook/publish", {
-    method: "POST",
-    body: JSON.stringify(product),
-  });
-}
-
-export async function publishToInstagram(product) {
-  return request("/api/instagram/publish", {
-    method: "POST",
-    body: JSON.stringify(product),
-  });
-}
-
-export async function publishToWhatsApp(product) {
-  return request("/api/whatsapp/send", {
-    method: "POST",
-    body: JSON.stringify(product),
-  });
+  return payload.products;
 }
