@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 
 async function request(path, options = {}) {
   const response = await fetch(`${API_URL}${path}`, {
@@ -34,5 +34,26 @@ export async function saveProduct(product) {
 
 export async function getProducts() {
   const payload = await request("/api/products");
-  return payload.products;
+  return payload.products || [];
+}
+
+export async function publishToFacebook(product) {
+  return request("/api/facebook/publish", {
+    method: "POST",
+    body: JSON.stringify(product),
+  });
+}
+
+export async function publishToInstagram(product) {
+  return request("/api/instagram/publish", {
+    method: "POST",
+    body: JSON.stringify(product),
+  });
+}
+
+export async function publishToWhatsApp(product) {
+  return request("/api/whatsapp/send", {
+    method: "POST",
+    body: JSON.stringify(product),
+  });
 }
